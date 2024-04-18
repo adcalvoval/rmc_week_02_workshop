@@ -1,5 +1,10 @@
 # Communicable, Maternal, Neonatal, and Nutritional Disease Burden (CMNN)
 
+```{r include = F}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
 ```{r message=FALSE}
 # Load necessary packages
 pacman::p_load(tidyverse, knitr, here)

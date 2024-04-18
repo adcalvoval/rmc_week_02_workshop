@@ -1,6 +1,6 @@
 ---
 title: "Global Disease Burden Analysis"
-author: "Adrián Calvo-Valderrama" # AUTHOR NAMES HERE!
+author: "Adrián Calvo-Valderrama" 
 output: github_document
 ---
 

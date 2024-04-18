@@ -1,4 +1,8 @@
 # Overall Disease Burden
+```{r include = F}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
 
 ```{r include = FALSE}
 # Load necessary packages
@@ -35,7 +39,7 @@ daly_burden_table <-
 daly_burden_graph <-
   
 ggplot(daly_burden_table, 
-       aes(x = Year, y = `Burkina Faso`, color = "Burkina Faso")) +
+       mapping = aes(x = Year, y = `Burkina Faso`, color = "Burkina Faso")) +
   geom_line() +
   
   geom_line(aes(y = `Madagascar`, color = "Madagascar")) +
@@ -48,6 +52,7 @@ ggplot(daly_burden_table,
        color = "Country") +
   
   scale_color_manual(values = c("Burkina Faso" = "blue", "Madagascar" = "green", "New Zealand" = "red")) +
+  scale_y_log10() +
   
   theme_minimal()
 
