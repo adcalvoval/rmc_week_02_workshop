@@ -1,6 +1,6 @@
 # Non-Communicable Disease Burden (NCD)
 
-```{r}
+```{r include=FALSE}
 # Load necessary packages
 pacman::p_load(tidyverse, knitr, here)
 
@@ -14,12 +14,50 @@ data_ncd <- read_csv(here("data", "burden-of-disease-ncd.csv"))
 # Here render a table for the DALY burden over time for the three countries 
 # You should pivot the data to show each country in a separate column.
 # Use kable() from the knitr package to render the table.
+
+ncd_burden_table <- 
+  data_ncd %>% 
+  filter(Entity %in% c("Burkina Faso", "Madagascar", "New Zealand")) %>%
+  arrange(Year) %>% 
+  rename(DALY = `DALYs (Disability-Adjusted Life Years) - Non-communicable diseases - Sex: Both - Age: Age-standardized (Rate)`) %>% 
+  select(!Code) %>% 
+  pivot_wider(values_from = DALY, 
+              names_from = Entity)
+
+  knitr::kable(ncd_burden_table)
+
+
 ```
 
 ## Plot Showing Trends in NCD Burden Over Time 
 
 ```{r}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
+
+ncd_burden_graph <-
+  
+ggplot(ncd_burden_table, 
+       aes(x = Year, y = `Burkina Faso`, color = "Burkina Faso")) +
+  geom_line() +
+  
+  geom_line(aes(y = `Madagascar`, color = "Madagascar")) +
+  
+  geom_line(aes(y = `New Zealand`, color = "New Zealand")) +
+  
+  labs(title = "DALYs Burden Over Time for Non communicable diseases",
+       x = "Year",
+       y = "DALYs",
+       color = "Country") +
+  
+  scale_color_manual(values = c("Burkina Faso" = "blue", "Madagascar" = "green", "New Zealand" = "red")) +
+  scale_y_log10()
+  
+  theme_minimal()
+
+
+ncd_burden_graph
+
+
 ```
 
 ## Summary of NCD Burden Findings

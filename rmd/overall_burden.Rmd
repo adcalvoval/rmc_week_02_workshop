@@ -1,8 +1,8 @@
 # Overall Disease Burden
 
-```{r}
+```{r include = FALSE}
 # Load necessary packages
-pacman::p_load(tidyverse, knitr, here)
+pacman::p_load(tidyverse, knitr, here, esquisse)
 
 # Import the overall disease data
 data_overall <- read_csv(here("data", "burden-of-disease-all-causes.csv"))
@@ -10,19 +10,51 @@ data_overall <- read_csv(here("data", "burden-of-disease-all-causes.csv"))
 
 ## Table of Estimates for Overall Disease Burden Over Time
 
-```{r}
+```{r echo=}
 # Here render a table for the DALY burden over time for the three countries 
 # You should pivot the data to show each country in a separate column.
 # Use kable() from the knitr package to render the table.
+
+daly_burden_table <- 
+  data_overall %>% 
+  filter(Entity %in% c("Burkina Faso", "Madagascar", "New Zealand")) %>%
+  arrange(Year) %>% 
+  rename(DALY = `DALYs (Disability-Adjusted Life Years) - All causes - Sex: Both - Age: Age-standardized (Rate)`) %>% 
+  select(!Code) %>% 
+  pivot_wider(values_from = DALY, 
+              names_from = Entity)
+
+  knitr::kable(daly_burden_table)
 ```
 
 ## Plot Showing Trends in Overall Disease Burden Over Time
 
-```{r}
+```{r echo=FALSE}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
+
+daly_burden_graph <-
+  
+ggplot(daly_burden_table, 
+       aes(x = Year, y = `Burkina Faso`, color = "Burkina Faso")) +
+  geom_line() +
+  
+  geom_line(aes(y = `Madagascar`, color = "Madagascar")) +
+  
+  geom_line(aes(y = `New Zealand`, color = "New Zealand")) +
+  
+  labs(title = "DALYs Burden Over Time",
+       x = "Year",
+       y = "DALYs",
+       color = "Country") +
+  
+  scale_color_manual(values = c("Burkina Faso" = "blue", "Madagascar" = "green", "New Zealand" = "red")) +
+  
+  theme_minimal()
+
+
+daly_burden_graph
 ```
 
 ## Summary of Overall Disease Burden Findings
 
-Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
-
+The graph above shows decreasing Disability-Adjusted Life Years burden in all three countries between 1990 and 2003.The decrease is slightly sharper in the case of Burkina Faso, although we can observe a short spike in the mid 1990's. New Zealand's decrease is steadier and less pronounced. This visualization suggests progress in access to health care and general advances in medicine had a more significant impact in less industrialized countries than in a country like New Zealand, where such access and quality of health services have presumably always been greater.
