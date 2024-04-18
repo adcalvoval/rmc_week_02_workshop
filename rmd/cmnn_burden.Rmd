@@ -55,7 +55,7 @@ ggplot(cmnn_burden_table,
        color = "Country") +
   
   scale_color_manual(values = c("Burkina Faso" = "blue", "Madagascar" = "green", "New Zealand" = "red")) +
-  scale_y_log10()
+  scale_y_log10() +
   
   theme_minimal()
 
@@ -66,6 +66,6 @@ cmnn_burden_graph
 
 ## Summary of CMNN Burden Findings
 
-Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
+Disease burden for communicable, maternal, neonatal and nutritional diseases seems to steadily, although not rapidly decrease in all three countries. The decrease is less pronounced in New Zealand, where we might assume access to higher quality care and medicine has been more constant over the years. Access to such care in the other two countries seems to have had a greater impact, with a very similar rate of decline in both.
 
 

@@ -54,7 +54,7 @@ ggplot(ncd_burden_table,
        color = "Country") +
   
   scale_color_manual(values = c("Burkina Faso" = "blue", "Madagascar" = "green", "New Zealand" = "red")) +
-  scale_y_log10()
+  scale_y_log10() +
   
   theme_minimal()
 
@@ -66,6 +66,6 @@ ncd_burden_graph
 
 ## Summary of NCD Burden Findings
 
-Provide a brief analysis based on the data presented in the table and chart. Highlight any significant findings or patterns. About 3 sentences.
+Although the findings on other diseases burden shows a general downward trend in all 3 countries, the graph above. for non-communicable diseases, seems to indicate that some countries are seeing an uptick since 2010. Burkina Faso and New Zealand both see a slight increase, although slightly more pronounced in the former, which ends up overtaking Madagascar in 2015. Madagascar seems to see a more steady decline over the years, although also less pronounced than for other forms of disease burden.
 
 

@@ -1,8 +1,4 @@
 # Overall Disease Burden
-```{r include = F}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
 
 ```{r include = FALSE}
 # Load necessary packages
@@ -14,7 +10,7 @@ data_overall <- read_csv(here("data", "burden-of-disease-all-causes.csv"))
 
 ## Table of Estimates for Overall Disease Burden Over Time
 
-```{r echo=}
+```{r echo = FALSE}
 # Here render a table for the DALY burden over time for the three countries 
 # You should pivot the data to show each country in a separate column.
 # Use kable() from the knitr package to render the table.
@@ -33,7 +29,7 @@ daly_burden_table <-
 
 ## Plot Showing Trends in Overall Disease Burden Over Time
 
-```{r echo=FALSE}
+```{r echo = FALSE}
 # Here, plot a line graph showing the trend of DALY burden for the chosen countries over time. You can use ggplot2 to create this plot. Each country's line should be a different color.
 
 daly_burden_graph <-
